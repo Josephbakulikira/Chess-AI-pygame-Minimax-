@@ -16,6 +16,7 @@
 # Bugs & issues
 - No tie by chess repetition
 - the chess ai is slow as soon as the depth is more than 4
+- Also i haven't implemented the two player server. will probably do it, the next month
 - ...
 
 > REQUIREMENTS
