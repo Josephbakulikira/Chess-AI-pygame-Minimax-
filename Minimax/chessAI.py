@@ -71,10 +71,12 @@ class Minimax(object):
                 pion = self.board.MoveSimulation(piece, i)
                 score = self.minimax(depth + 1, False, alpha, beta)
                 bestScore = max(bestScore, score)
-                # alpha = max(alpha, bestScore)
+                if self.AlphaBetaPruning:
+                    alpha = max(alpha, bestScore)
                 self.UndoMove(pion, piece, prev_pos, i)
-                # if beta <= alpha:
-                #     return bestScore
+
+                if beta <= alpha and self.AlphaBetaPruning:
+                    return bestScore
             return bestScore
         else:
             bestScore = 9999
@@ -86,10 +88,11 @@ class Minimax(object):
                 currentPiece = self.board.MoveSimulation(piece, i)
                 score = self.minimax(depth + 1, True, alpha, beta)
                 bestScore = min(bestScore, score)
-                # beta = min(alpha, bestScore)
+                if self.AlphaBetaPruning:
+                    beta = min(beta, bestScore)
                 self.UndoMove(currentPiece, piece, prev_pos, i)
-                # if beta <= alpha:
-                #     return bestScore
+                if beta <= alpha and self.AlphaBetaPruning:
+                    return bestScore
             return bestScore
 
     def Evaluate(self):
@@ -98,7 +101,9 @@ class Minimax(object):
             for piece in pieces:
                 if piece != None:
                     p_map = PieceMap(piece)
-                    score = piece.value + p_map[piece.position.y][piece.position.x]
+                    score = piece.value
+                    if self.UsePointMaps:
+                        score += p_map[piece.position.y][piece.position.x]
                     totalScore += score
 
         return totalScore

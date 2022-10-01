@@ -99,7 +99,6 @@ class Chess:
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
                     self.HandleOnLeftMouseButtonUp()
-
     def ComputerMoves(self, player):
         if self.board.player == player:
             piece, bestmove = self.ComputerAI.Start(0)
