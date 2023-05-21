@@ -16,9 +16,9 @@
 - tie Draw,
 
 # Bugs & issues
-- No tie by chess repetition
-- the chess ai is slow as soon as the depth is more than 4
-- Also i haven't implemented the two player server. will probably do it, the next month
+- No tie by move repetition
+- the chess ai is slow if the depth is more than 4
+- Also i haven't implemented the two player server. will probably do it in the future
 - ...
 
 > REQUIREMENTS
